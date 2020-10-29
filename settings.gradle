@@ -1,0 +1,5 @@
+rootProject.name = 'jaz-multiproject'
+
+include 'jaz-api'
+include 'jaz-client'
+
