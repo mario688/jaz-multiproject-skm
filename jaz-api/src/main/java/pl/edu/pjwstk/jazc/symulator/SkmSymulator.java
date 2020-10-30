@@ -16,6 +16,7 @@ public class SkmSymulator {
     private List<Osoba> listPerson;
     private List<Przedzial> listPrzedzial;
     private List<Osoba> listaOsobZprzedzialu;
+    int IleWsiadaOsob;
     public SkmSymulator(){
 
         listTrain = new ArrayList<>();
@@ -25,23 +26,27 @@ public class SkmSymulator {
             listTrain.add(new Train(i, i, aktualnaStacja));
         }
     }
-    public void wsiadac(Train train){
+    public void wsiadac(Train train) {
 
 
-        //for(Przedzial przedzial : train.getPrzedzial()){
-        //    przedzial.getListaOsob().add(new Osoba("Adolf","Hitler",5));
-        //}
-        int IleWsiadaOsob = ThreadLocalRandom.current().nextInt(2, 8 + 1);
-        for(int i=0;i<train.getIloscPrzedzialow();i++){
-            listPrzedzial = train.getPrzedzial();
-            Przedzial przedzial = listPrzedzial.get(i);
-            przedzial.getListaOsob().add(new Osoba());
-            listaOsobZprzedzialu = przedzial.getListaOsob();
-            przedzial.setListaOsob(listaOsobZprzedzialu);
+         IleWsiadaOsob = ThreadLocalRandom.current().nextInt(2, 8 + 1);
+            for (int i = 0; i < train.getIloscPrzedzialow(); i++) {
+                listPrzedzial = train.getPrzedzial();
+                Przedzial przedzial = listPrzedzial.get(i);
+                int iloscMiejsc;
+                for (int o = 0; o < IleWsiadaOsob; o++) {
+                    int randStation = ThreadLocalRandom.current().nextInt(0, 15 + 1);
+                    Osoba person = new Osoba(randStation);
+                    przedzial.getListaOsob().add(person);
+                        iloscMiejsc = przedzial.getIloscMiejsc();
+                        iloscMiejsc--;
+                        przedzial.setIloscMiejsc(iloscMiejsc);
 
-        }
+                    }
+                }
+            }
 
-    }
+
 
     public void move(){
         for(int i=0;i<listTrain.size();i++) {
@@ -65,8 +70,7 @@ public class SkmSymulator {
     public List<Train> getListTrain() {
         return listTrain;
     }
-    public List<Osoba> getListOsob() {
-        return listaOsobZprzedzialu;
-    }
+
+
 
 }

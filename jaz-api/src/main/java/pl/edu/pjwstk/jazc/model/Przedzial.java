@@ -7,25 +7,18 @@ public class Przedzial {
     private int idPrzedzialu;
     private int iloscMiejsc;
     private List<Osoba> listaOsob = new ArrayList<>();
-    private int valueOfFreeSeats;
     public Przedzial() {
     }
 
     public Przedzial(int idPrzedzialu, int iloscMiejsc) {
         this.idPrzedzialu = idPrzedzialu;
         this.iloscMiejsc = iloscMiejsc;
-        valueOfFreeSeats = iloscMiejsc;
-        listaOsob.add(new Osoba());
+
 
     }
 
-    public int getValueOfFreeSeats() {
-        return valueOfFreeSeats;
-    }
 
-    public void setValueOfFreeSeats(int valueOfFreeSeats) {
-        this.valueOfFreeSeats = valueOfFreeSeats;
-    }
+
 
     public List<Osoba> getListaOsob() {
         return listaOsob;

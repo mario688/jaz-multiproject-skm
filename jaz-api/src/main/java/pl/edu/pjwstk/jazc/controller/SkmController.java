@@ -39,14 +39,9 @@ public class SkmController {
         return listTrain.getListTrain();
 
     }
-    @GetMapping("/lista")
-    public List<Osoba> getPerosn() {
 
-        listTrain.move();
 
-        return listTrain.getListOsob();
 
-    }
 
 
 /*
