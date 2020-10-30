@@ -1,11 +1,25 @@
 package pl.edu.pjwstk.jazc.model;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Osoba {
     private String imie;
     private String nazwisko;
     private int bilet;
 
+
     public Osoba() {
+        String[] Names = {"Adam","Karol","Henio","Mario","Krzysztof","Bartek","Kuba","Monika","Maja","Kasia"};
+        String[] Surnames = {"Gliwa","Wojtyla","Nowak","Kowalski","Gorski","Formela","Karszny","Pioch","Taube","Maciejewski"};
+
+        int RandName = ThreadLocalRandom.current().nextInt(0, 9 + 1);
+        int RandSurnames = ThreadLocalRandom.current().nextInt(0, 9 + 1);
+        int randStation = ThreadLocalRandom.current().nextInt(0, 15 + 1);
+       this.imie=Names[RandName];
+       this.nazwisko=Surnames[RandSurnames];
+       this.bilet=randStation;
+
     }
 
     public Osoba(String imie, String nazwisko, int bilet) {

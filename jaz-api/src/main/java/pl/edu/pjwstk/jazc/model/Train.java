@@ -11,7 +11,8 @@ public class Train {
     private int iloscPrzedzialow;
     private int aktualnaStacja;
     private List<Przedzial> przedzial;
-    private List<Stacja> stacja;
+    private boolean jedziedo;
+
 
 
     public Train() {
@@ -21,8 +22,9 @@ public class Train {
         this.id = id;
         this.iloscPrzedzialow = iloscPrzedzialow;
         this.aktualnaStacja = aktualnaStacja;
+        jedziedo=true;
         przedzial = new ArrayList<>();
-        stacja = new ArrayList<>();
+
 
         for(int i=1;i<=iloscPrzedzialow;i++) {
             przedzial.add(new Przedzial(i,10));
@@ -30,9 +32,7 @@ public class Train {
         }
 
     }
-    public void move(){
-        this.aktualnaStacja++;
-    }
+
 
     public List<Przedzial> getPrzedzial() {
         return przedzial;
@@ -51,8 +51,13 @@ public class Train {
     }
 
 
+    public boolean isJedziedo() {
+        return jedziedo;
+    }
 
-
+    public void setJedziedo(boolean jedziedo) {
+        this.jedziedo = jedziedo;
+    }
 
     public int getIloscPrzedzialow() {
         return iloscPrzedzialow;

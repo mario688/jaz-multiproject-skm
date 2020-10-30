@@ -6,16 +6,25 @@ import java.util.List;
 public class Przedzial {
     private int idPrzedzialu;
     private int iloscMiejsc;
-    private List<Osoba> listaOsob;
+    private List<Osoba> listaOsob = new ArrayList<>();
+    private int valueOfFreeSeats;
+    public Przedzial() {
+    }
 
     public Przedzial(int idPrzedzialu, int iloscMiejsc) {
         this.idPrzedzialu = idPrzedzialu;
         this.iloscMiejsc = iloscMiejsc;
-        listaOsob = new ArrayList<>();
+        valueOfFreeSeats = iloscMiejsc;
+        listaOsob.add(new Osoba());
 
-        //listaOsob.add(new Osoba("Imieeeeeeee","Nazwisko",3));
+    }
 
+    public int getValueOfFreeSeats() {
+        return valueOfFreeSeats;
+    }
 
+    public void setValueOfFreeSeats(int valueOfFreeSeats) {
+        this.valueOfFreeSeats = valueOfFreeSeats;
     }
 
     public List<Osoba> getListaOsob() {
