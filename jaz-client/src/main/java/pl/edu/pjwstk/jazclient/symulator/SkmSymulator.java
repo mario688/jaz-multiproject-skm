@@ -1,16 +1,13 @@
-package pl.edu.pjwstk.jazc.symulator;
+package pl.edu.pjwstk.jazclient.symulator;
 
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-
-
-import pl.edu.pjwstk.jazc.model.*;
-
-import java.util.stream.Collectors;
+import pl.edu.pjwstk.jazclient.model.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableConfigurationProperties(SkmSettings.class)
@@ -25,24 +22,23 @@ public class SkmSymulator {
     int IleWsiadaOsob;
 
 
-    public SkmSymulator() {
+    public SkmSymulator(){
         SkmSettings skmSettings = new SkmSettings();
         listTrain = new ArrayList<>();
         int trains = skmSettings.getTrains();
         int compartments = skmSettings.getCompartments();
         int seats = skmSettings.getSeats();
-        if (trains == 0 || compartments == 0 || seats == 0) {
-            trains = 10;
-            compartments = 5;
-            seats = 10;
+        if(trains==0||compartments==0||seats==0){
+            trains=10;
+            compartments=5;
+            seats=10;
         }
 
-        for (int i = 1; i < trains; i++) {
+        for(int i=1;i<trains;i++) {
             aktualnaStacja = ThreadLocalRandom.current().nextInt(0, 14 + 1);
-            listTrain.add(new Train(i, compartments, seats, aktualnaStacja));
+            listTrain.add(new Train(i,compartments,seats, aktualnaStacja));
         }
     }
-
     public void wsiadac(Train train) {
 
 
@@ -74,7 +70,7 @@ public class SkmSymulator {
 
     }
 
-    void wysiadanie(Train train) {
+    void wysiadanie(Train train){
         for (int i = 0; i < train.getIloscPrzedzialow(); i++) {
             listPrzedzial = train.getPrzedzial();
             Przedzial przedzial = listPrzedzial.get(i);
@@ -84,12 +80,12 @@ public class SkmSymulator {
 
             int AktualnaIloscMiejsc = ListaOsob.size();
 
-            przedzial.setIloscMiejsc(przedzial.getIloscMiejscNaStarcie() - AktualnaIloscMiejsc);
+            przedzial.setIloscMiejsc(przedzial.getIloscMiejscNaStarcie()-AktualnaIloscMiejsc);
 
 
             float iloscMiejsc = przedzial.getIloscMiejsc();
             float iloscMiejscNaStarcie = przedzial.getIloscMiejscNaStarcie();
-            float procent = Math.round((iloscMiejsc / iloscMiejscNaStarcie) * 100);
+            float procent = Math.round((iloscMiejsc/iloscMiejscNaStarcie)*100);
 
             przedzial.setProcentoweZapełnieniePrzedzialu(procent);
 
@@ -97,22 +93,22 @@ public class SkmSymulator {
 
     }
 
-    public void move() {
-        for (int i = 0; i < listTrain.size(); i++) {
+    public void move(){
+        for(int i=0;i<listTrain.size();i++) {
             Train train = listTrain.get(i);
-            if (train.isJedziedo()) {
-                if (train.getAktualnaStacja() < 15) {
+            if(train.isJedziedo()){
+                if(train.getAktualnaStacja()<15){
                     train.setAktualnaStacja(train.getAktualnaStacja() + 1);
-                    wsiadac(train);
-                    wysiadanie(train);
-                } else
+                        wsiadac(train);
+                        wysiadanie(train);
+                }else
                     train.setJedziedo(false);
 
-            } else if (train.getAktualnaStacja() > 0) {
+            }else if(train.getAktualnaStacja()>0){
                 train.setAktualnaStacja(train.getAktualnaStacja() - 1);
                 wsiadac(train);
                 wysiadanie(train);
-            } else
+            }else
                 train.setJedziedo(true);
         }
 
@@ -122,13 +118,12 @@ public class SkmSymulator {
     public List<Train> getListTrain() {
         return listTrain;
     }
-
-    public Train getListTrainById(int Id) {
+    public Train getListTrainById(int Id){
         Train train = new Train();
 
-        for (int i = 0; i < listTrain.size(); i++) {
+        for(int i=0;i<listTrain.size();i++){
             Train trains = listTrain.get(i);
-            if (trains.getId() == Id) {
+            if(trains.getId()==Id){
                 train = trains;
             }
 
@@ -136,6 +131,10 @@ public class SkmSymulator {
 
         return train;
     }
+
+
+
+
 
 
 }

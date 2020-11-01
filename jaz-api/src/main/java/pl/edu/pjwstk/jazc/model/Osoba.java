@@ -10,15 +10,15 @@ public class Osoba {
 
 
     public Osoba(int bilet) {
-        String[] Names = {"Adam","Karol","Henio","Mario","Krzysztof","Bartek","Kuba","Monika","Maja","Kasia"};
-        String[] Surnames = {"Gliwa","Wojtyla","Nowak","Kowalski","Gorski","Formela","Karszny","Pioch","Taube","Maciejewski"};
+        String[] Names = {"Adam", "Karol", "Henio", "Mario", "Krzysztof", "Bartek", "Kuba", "Monika", "Maja", "Kasia"};
+        String[] Surnames = {"Gliwa", "Wojtyla", "Nowak", "Kowalski", "Gorski", "Formela", "Karszny", "Pioch", "Taube", "Maciejewski"};
 
         int RandName = ThreadLocalRandom.current().nextInt(0, 9 + 1);
         int RandSurnames = ThreadLocalRandom.current().nextInt(0, 9 + 1);
 
-       this.imie=Names[RandName];
-       this.nazwisko=Surnames[RandSurnames];
-       this.bilet=bilet;
+        this.imie = Names[RandName];
+        this.nazwisko = Surnames[RandSurnames];
+        this.bilet = bilet;
 
     }
 

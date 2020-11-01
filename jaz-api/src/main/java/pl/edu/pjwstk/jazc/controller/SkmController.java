@@ -3,8 +3,7 @@ package pl.edu.pjwstk.jazc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pjwstk.jazc.model.Osoba;
-import pl.edu.pjwstk.jazc.model.Przedzial;
+
 import pl.edu.pjwstk.jazc.model.Train;
 import pl.edu.pjwstk.jazc.symulator.SkmSymulator;
 
@@ -16,12 +15,10 @@ import java.util.Optional;
 @RestController
 public class SkmController {
 
-   private SkmSymulator listTrain = new SkmSymulator();
-
+    private SkmSymulator listTrain = new SkmSymulator();
 
 
     public SkmController() {
-
 
 
     }
@@ -32,6 +29,7 @@ public class SkmController {
         return listTrain.getListTrain();
 
     }
+
     @GetMapping("/doprzodu")
     public List<Train> doPrzodu() {
 
@@ -39,6 +37,15 @@ public class SkmController {
         return listTrain.getListTrain();
 
     }
+
+    @GetMapping("/pociagi/{IdTrain}")
+    public Train getTrain(@PathVariable("IdTrain") Integer train) {
+
+        return listTrain.getListTrainById(train);
+
+
+    }
+
 
 
 
@@ -64,7 +71,6 @@ public class SkmController {
     }
 
 */
-
 
 
 }

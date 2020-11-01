@@ -6,25 +6,64 @@ import java.util.List;
 public class Train {
 
     private int id;
-    private int numerPrzedzialu;
     private int iloscPrzedzialow;
-    private String aktualnaStacja;
+    private int aktualnaStacja;
+    private String stacja;
     private List<Przedzial> przedzial;
-    private List<Stacja> stacja;
+    private boolean jedziedo;
+    private  int iloscSiedzen;
+
+
 
     public Train() {
     }
 
-    public Train(int id, int numerPrzedzialu, int iloscPrzedzialow, String aktualnaStacja) {
+    public Train(int id, int iloscPrzedzialow,int iloscSiedzen, int aktualnaStacja) {
+        String[] nazwyStacji = {"Gdańsk główny", "Gdańsk Stocznia", "Gdańsk Politechnika", "Gdańsk Wrzeszcz", "Gdańsk Zaspa", "Gdańsk Przymorze", "Gdańsk Oliwa", "Gdańsk Żabianka",
+                "Sopot Wyścigi", "Sopot", "Sopot Kamienny Potok", "Gdynia Orłowo", "Gdynia Redłowo", "Gdynia Wzgórze św. Maksymiliana", "Gdynia Główna"};
+
         this.id = id;
-        this.numerPrzedzialu = numerPrzedzialu;
         this.iloscPrzedzialow = iloscPrzedzialow;
         this.aktualnaStacja = aktualnaStacja;
+        this.stacja = nazwyStacji[aktualnaStacja];
+        this.iloscSiedzen = iloscSiedzen;
+
+        jedziedo=true;
         przedzial = new ArrayList<>();
 
+
         for(int i=1;i<=iloscPrzedzialow;i++) {
-            przedzial.add(new Przedzial(numerPrzedzialu,10));
+            przedzial.add(new Przedzial(i,iloscSiedzen));
+
         }
+
+
+
+
+    }
+
+    public int getAktualnaStacja() {
+        return aktualnaStacja;
+    }
+
+    public void setAktualnaStacja(int aktualnaStacja) {
+        this.aktualnaStacja = aktualnaStacja;
+    }
+
+    public String getStacja() {
+        return stacja;
+    }
+
+    public void setStacja(String stacja) {
+        this.stacja = stacja;
+    }
+
+    public List<Przedzial> getPrzedzial() {
+        return przedzial;
+    }
+
+    public void setPrzedzial(List<Przedzial> przedzial) {
+        this.przedzial = przedzial;
     }
 
     public int getId() {
@@ -35,12 +74,13 @@ public class Train {
         this.id = id;
     }
 
-    public int getNumerPrzedzialu() {
-        return numerPrzedzialu;
+
+    public boolean isJedziedo() {
+        return jedziedo;
     }
 
-    public void setNumerPrzedzialu(int numerPrzedzialu) {
-        this.numerPrzedzialu = numerPrzedzialu;
+    public void setJedziedo(boolean jedziedo) {
+        this.jedziedo = jedziedo;
     }
 
     public int getIloscPrzedzialow() {
@@ -51,11 +91,5 @@ public class Train {
         this.iloscPrzedzialow = iloscPrzedzialow;
     }
 
-    public String getAktualnaStacja() {
-        return aktualnaStacja;
-    }
 
-    public void setAktualnaStacja(String aktualnaStacja) {
-        this.aktualnaStacja = aktualnaStacja;
-    }
 }
